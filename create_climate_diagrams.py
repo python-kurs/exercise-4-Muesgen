@@ -31,9 +31,7 @@ def create_climate_diagram(df,
                            temp_min=-15,
                            temp_max=20,
                            prec_min=0,
-                           prec_max=370,
-                           opacity = 0.5,
-                           bar_width = 0.35):
+                           prec_max=370):
     """
     Draw a climate diagram.
     

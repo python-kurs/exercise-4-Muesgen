@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 from pathlib import Path
-src = Path("C:/Users/mmues/Documents/Python/exercise-4-Muesgen")
+src = Path("C:/Users/mmues/Documents/Python/exercise-4-Muesgen/")
 data = src / "data/"
 output = src / "output/"
 output.mkdir(parents=True,exist_ok=True)
@@ -71,12 +71,16 @@ def create_climate_diagram(df,
     # Draw temperature values as a red line and precipitation values as blue bars: [1P]
     # Hint: Check out the matplotlib documentation how to plot barcharts. Try to directly set the correct
     #       x-axis labels (month shortnames).
-    import calendar as c
+
+    days = mdates.DayLocator(bymonthday=28)
+    monthFmt = mdates.DateFormatter("%b")
+    ax2.xaxis.set_major_locator(days)
+    ax2.xaxis.set_major_formatter(monthFmt)
+    ax1.xaxis.set_major_locator(days)
+    ax1.xaxis.set_major_formatter(monthFmt)
     
-    month = c.month_abbr[1:13]
-    
-    ax2.bar(dfplot.index, height = dfplot[prec_col], width=15, color = 'blue',label = 'Precipitation',tick_label = month)
-    ax1.plot(dfplot[temp_col],color ='red', label = 'Temperature',tick_label = month)
+    ax2.bar(dfplot.index, height = dfplot[prec_col], width=25, color = 'blue',label = 'Precipitation')
+    ax1.plot(dfplot[temp_col],color ='red', label = 'Temperature')
     
     
     # Set appropiate limits to each y-axis using the function arguments: [1P]
@@ -95,5 +99,5 @@ def create_climate_diagram(df,
     return fig
 
 # Use this function to draw a climate diagram for 2018 for both stations and save the result: [1P]
-create_climate_diagram(garmisch, temp_col=' TMK', prec_col=' RSK', title= 'Climate chart Garmisch 2018', filename= output / 'Garmisch_output.png')
-create_climate_diagram(zugspitze, temp_col=' TMK', prec_col=' RSK', title= 'CLimate chart Zugspitze 2018', filename= output / 'Zugspitze_output.png')
+create_climate_diagram(garmisch, temp_col=' TMK', prec_col=' RSK', title= 'Climate chart Garmisch 2018', filename= 'output/Garmisch_output.png')
+create_climate_diagram(zugspitze, temp_col=' TMK', prec_col=' RSK', title= 'Climate chart Zugspitze 2018', filename= 'output/Zugspitze_output.png')

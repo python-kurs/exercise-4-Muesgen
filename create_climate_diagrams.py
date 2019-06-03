@@ -75,7 +75,7 @@ def create_climate_diagram(df,
     
     month = c.month_abbr[1:13]
     
-    ax2.bar(dfplot.index, height = dfplot[temp_col], width=0.8, color = 'blue',label = 'Precipitation',tick_label = month)
+    ax2.bar(dfplot.index, height = dfplot[prec_col], width=15, color = 'blue',label = 'Precipitation',tick_label = month)
     ax1.plot(dfplot[temp_col],color ='red', label = 'Temperature',tick_label = month)
     
     
